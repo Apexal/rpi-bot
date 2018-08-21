@@ -1,4 +1,3 @@
-const { Student } = require('../database.js');
 const { getTargetAndStudent } = require('../utils.js');
 const Discord = require('discord.js');
 

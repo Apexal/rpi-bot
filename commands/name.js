@@ -1,4 +1,3 @@
-const { Student } = require('../database.js');
 const { getTargetAndStudent } = require('../utils.js');
 const config = require('../config.json');
 
@@ -17,7 +16,9 @@ const getName = (message, target, student) => {
     if (target.user.equals(message.author)) {
       // User hasn't set their own name yet
       message.channel.send(
-        `You haven't set your name yet! Try \`${config.prefix}name First Last\``
+        `You haven't set your name yet! Try \`${
+          config.prefix
+        }name <first> <last>\``
       );
     } else {
       // User asked for someone's name who hasn't given it yet
@@ -37,7 +38,7 @@ module.exports = {
   name: 'name',
   uses: {
     "View a student's name": '@User',
-    'Set your own name': 'First Last'
+    'Set your own name': '<first name> <last name>'
   },
   async run(message, args) {
     const { target, student } = await getTargetAndStudent(message);

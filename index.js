@@ -42,34 +42,36 @@ client.on('message', async msg => {
     // Help command
     if (commandName === 'help') {
       if (args.length === 0) {
-        return msg.channel.send(
-          `**Commands**\n!help\n${client.commands
+        const lines = ['**Commands:**'];
+        lines.push('!help');
+        lines.push(
+          client.commands
             .array()
             .map(cmd => `${config.prefix}${cmd.name}`)
-            .join('\n')}`
+            .join('\n')
         );
+        lines.push('*Use `!help <command>` to get more info.*');
+
+        return msg.channel.send(lines, { split: true });
       } else {
         if (!client.commands.has(args[0]))
           return msg.channel.send('No such command exists!');
 
         const command = client.commands.get(args[0]);
-        const uses = Object.keys(command.uses)
-          .map(
-            // e.g. 'View a users dorm info: `!dorm @User`'
-            desc =>
-              desc +
-              ': `' +
-              config.prefix +
-              args[0] +
-              ' ' +
-              command.uses[desc] +
-              '`'
-          )
-          .join('\n');
-
-        msg.channel.send(
-          '**Command**: `' + config.prefix + args[0] + '`\n' + uses
+        const uses = Object.keys(command.uses).map(
+          // e.g. 'View a users dorm info: `!dorm @User`'
+          desc =>
+            desc +
+            ': `' +
+            config.prefix +
+            args[0] +
+            ' ' +
+            command.uses[desc] +
+            '`'
         );
+
+        const lines = [`**Command Help:** \` ${config.prefix}${args[0]}\``];
+        msg.channel.send(lines.concat(uses), { split: true });
       }
     } else if (client.commands.has(commandName)) {
       // Execute command
