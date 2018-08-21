@@ -73,12 +73,16 @@ client.on('message', async msg => {
       }
     } else if (client.commands.has(commandName)) {
       // Execute command
+      const command = client.commands.get(commandName);
+      if (msg.channel.type === 'dm' && !command.dmEnabled)
+        return msg.channel.send('This command only works in servers.');
+
       console.log(
         `[Executing command '${commandName}' for @${msg.author.tag}] '${
           msg.content
         }'`
       );
-      await client.commands.get(commandName).run(msg, args);
+      await command.run(msg, args);
     }
   }
 });
