@@ -40,28 +40,37 @@ client.on('message', async msg => {
     commandName = commandName.substring(1);
 
     // Help command
-    if (commandName === 'help' && args.length > 0) {
-      if (!client.commands.has(args[0]))
-        return msg.channel.send('No such command exists!');
+    if (commandName === 'help') {
+      if (args.length === 0) {
+        return msg.channel.send(
+          `**Commands**\n!help\n${client.commands
+            .array()
+            .map(cmd => `${config.prefix}${cmd.name}`)
+            .join('\n')}`
+        );
+      } else {
+        if (!client.commands.has(args[0]))
+          return msg.channel.send('No such command exists!');
 
-      const command = client.commands.get(args[0]);
-      const uses = Object.keys(command.uses)
-        .map(
-          // e.g. 'View a users dorm info: `!dorm @User`'
-          desc =>
-            desc +
-            ': `' +
-            config.prefix +
-            args[0] +
-            ' ' +
-            command.uses[desc] +
-            '`'
-        )
-        .join('\n');
+        const command = client.commands.get(args[0]);
+        const uses = Object.keys(command.uses)
+          .map(
+            // e.g. 'View a users dorm info: `!dorm @User`'
+            desc =>
+              desc +
+              ': `' +
+              config.prefix +
+              args[0] +
+              ' ' +
+              command.uses[desc] +
+              '`'
+          )
+          .join('\n');
 
-      msg.channel.send(
-        '**Command**: `' + config.prefix + args[0] + '`\n' + uses
-      );
+        msg.channel.send(
+          '**Command**: `' + config.prefix + args[0] + '`\n' + uses
+        );
+      }
     } else if (client.commands.has(commandName)) {
       // Execute command
       console.log(
