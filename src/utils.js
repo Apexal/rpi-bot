@@ -23,7 +23,7 @@ module.exports = {
       if (target.user.equals(message.author)) {
         // User hasn't set their own major yet
         message.channel.send(
-          `You haven't set ${prop} name yet! Try \`${
+          `You haven't set your ${prop} yet! Try \`${
             config.prefix
           }help ${prop}\``
         );

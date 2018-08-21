@@ -12,7 +12,8 @@ const Student = sequelize.define('students', {
   first_name: Sequelize.STRING,
   last_name: Sequelize.STRING,
   major: Sequelize.STRING,
-  dorm: Sequelize.STRING
+  dorm: Sequelize.STRING,
+  graduation_year: Sequelize.INTEGER
 });
 
 // Test connection
