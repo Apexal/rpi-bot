@@ -35,7 +35,7 @@ for (const file of commandFiles) {
 // Command handling
 client.on('message', async msg => {
   if (msg.content.startsWith(config.prefix)) {
-    const parts = msg.content.split(' ');
+    const parts = msg.content.split(/ +/);
     let [commandName, ...args] = parts;
     commandName = commandName.substring(1);
 
