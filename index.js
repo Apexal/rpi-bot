@@ -14,7 +14,6 @@ const eventFiles = fs
 for (const file of eventFiles) {
   const handler = require(`./events/${file}`);
   client.events.set(file, handler);
-
   client.on(file, () => handler(client));
 }
 console.log(`[Loaded ${eventFiles.length} event handlers]`);

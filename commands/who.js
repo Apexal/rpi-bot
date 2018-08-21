@@ -1,4 +1,4 @@
-const { getTargetAndStudent } = require('../utils.js');
+const { getTargetAndStudent } = require('../src/utils.js');
 const Discord = require('discord.js');
 
 const createStudentEmbed = (target, student) => {

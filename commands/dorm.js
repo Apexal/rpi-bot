@@ -1,4 +1,4 @@
-const { getTargetAndStudent } = require('../utils.js');
+const { getTargetAndStudent } = require('../src/utils.js');
 const config = require('../config.json');
 
 const setDorm = async (message, target, student, dorm) => {

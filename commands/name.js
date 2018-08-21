@@ -1,4 +1,4 @@
-const { getTargetAndStudent } = require('../utils.js');
+const { getTargetAndStudent } = require('../src/utils.js');
 const config = require('../config.json');
 
 const setName = async (message, target, student, first_name, last_name) => {

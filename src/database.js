@@ -1,4 +1,4 @@
-const config = require('./config.json');
+const config = require('../config.json');
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(config.database.name, null, null, {
@@ -15,6 +15,7 @@ const Student = sequelize.define('students', {
   dorm: Sequelize.STRING
 });
 
+// Test connection
 sequelize.authenticate().then(
   function(err) {
     console.log('Connection has been established successfully.');
@@ -24,6 +25,7 @@ sequelize.authenticate().then(
   }
 );
 
+// Creates databases
 sequelize.sync();
 
 module.exports = { sequelize, Student };
