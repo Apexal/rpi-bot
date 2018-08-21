@@ -2,10 +2,10 @@ const { Student } = require('../database.js');
 const config = require('../config.json');
 
 const setDorm = async (message, target, student, dorm) => {
-  console.log(`Setting ${target.tag}'s dorm to '${dorm}'`);
+  console.log(`Setting ${target.user.tag}'s dorm to '${dorm}'`);
   student.dorm = dorm;
   await student.save();
-  message.channel.send(`Set your dorm to \`${dorm}\`!`);
+  return message.channel.send(`Set your dorm to \`${dorm}\`!`);
 };
 
 const getDorm = (message, target, student) => {

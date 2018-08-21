@@ -2,7 +2,9 @@ const { Student } = require('../database.js');
 const config = require('../config.json');
 
 const setName = async (message, target, student, first_name, last_name) => {
-  console.log(`Setting ${target.tag}'s name to '${first_name} ${last_name}'`);
+  console.log(
+    `Setting ${target.user.tag}'s name to '${first_name} ${last_name}'`
+  );
   student.first_name = first_name;
   student.last_name = last_name;
   await student.save();
