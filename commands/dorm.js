@@ -1,3 +1,5 @@
+const { DormInfo } = require('../database.js');
+
 module.exports = {
   name: 'dorm',
   uses: {
