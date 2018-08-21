@@ -33,7 +33,7 @@ for (const file of commandFiles) {
 }
 
 // Command handling
-client.on('message', msg => {
+client.on('message', async msg => {
   if (msg.content.startsWith(config.prefix)) {
     const parts = msg.content.split(' ');
     let [commandName, ...args] = parts;
@@ -69,7 +69,7 @@ client.on('message', msg => {
           msg.content
         }'`
       );
-      client.commands.get(commandName).run(msg, args);
+      await client.commands.get(commandName).run(msg, args);
     }
   }
 });

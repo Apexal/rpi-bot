@@ -6,8 +6,11 @@ const sequelize = new Sequelize(config.database.name, null, null, {
   storage: 'database.sqlite'
 });
 
-const DormInfo = sequelize.define('dorm_info', {
+const Student = sequelize.define('students', {
   discord_id: Sequelize.STRING,
+  first_name: Sequelize.STRING,
+  last_name: Sequelize.STRING,
+  major: Sequelize.STRING,
   dorm: Sequelize.STRING
 });
 
@@ -22,4 +25,4 @@ sequelize.authenticate().then(
 
 sequelize.sync();
 
-module.exports = { sequelize, DormInfo };
+module.exports = { sequelize, Student };
