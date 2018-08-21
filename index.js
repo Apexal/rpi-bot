@@ -16,8 +16,8 @@ for (const file of eventFiles) {
   client.events.set(file, handler);
 
   client.on(file, () => handler(client));
-  console.log(`[Loaded ${eventFiles.length} event handlers]`);
 }
+console.log(`[Loaded ${eventFiles.length} event handlers]`);
 
 // Load all commands
 client.commands = new Discord.Collection();
@@ -29,8 +29,8 @@ const commandFiles = fs
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
-  console.log(`[Loaded ${commandFiles.length} commands]`);
 }
+console.log(`[Loaded ${commandFiles.length} commands]`);
 
 // Command handling
 client.on('message', async msg => {
