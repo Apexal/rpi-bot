@@ -1,4 +1,5 @@
 const { Student } = require('../database.js');
+const { getTargetAndStudent } = require('../utils.js');
 const config = require('../config.json');
 
 const setDorm = async (message, target, student, dorm) => {
@@ -36,18 +37,7 @@ module.exports = {
     'Set your own dorm info': 'Burdett-100-A1'
   },
   async run(message, args) {
-    let target = message.member;
-
-    // Determine target
-    if (message.mentions.members.size === 1) {
-      target = message.mentions.members.first();
-    }
-
-    const [student, created] = await Student.findOrCreate({
-      where: { discord_id: target.user.id }
-    });
-
-    if (created) console.log(`Created student record for @${target.user.tag}`);
+    const { target, student } = await getTargetAndStudent(message);
 
     if (args.length === 0 || message.mentions.members.size === 1) {
       // Determine get or set

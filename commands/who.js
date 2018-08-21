@@ -1,34 +1,17 @@
 const { Student } = require('../database.js');
-
+const { getTargetAndStudent } = require('../utils.js');
 const Discord = require('discord.js');
 
-module.exports = {
-  name: 'who',
-  uses: {
-    'View your own Discord info': '',
-    'View a users Discord info': '@User'
-  },
-  async run(message, args) {
-    // Determine target
-    let target = message.member;
-    if (message.mentions.members.size > 0)
-      target = message.mentions.members.first();
+const createStudentEmbed = (target, student) => {
+  const joinedFromToday = Math.round(
+    (new Date() - target.joinedAt) / (1000 * 60 * 60 * 24)
+  );
 
-    // Find or create empty student record
-    const [student, created] = await Student.findOrCreate({
-      where: { discord_id: target.user.id }
-    });
-
-    if (created) console.log(`Created student record for @${target.user.tag}`);
-
-    const joinedFromToday = Math.round(
-      (new Date() - target.joinedAt) / (1000 * 60 * 60 * 24)
-    );
-
-    // Create embed
-    const userEmbed = new Discord.RichEmbed()
+  // Create embed
+  return (
+    new Discord.RichEmbed()
       .setColor('#0099ff')
-      .setTitle(`Class of ${student.graduation_year || '?'}`)
+      .setTitle(`Class of ${student.graduation_year || '-'}`)
       //.setURL('https://discord.js.org/')
       .setAuthor(
         !student.first_name || !student.last_name
@@ -38,12 +21,24 @@ module.exports = {
         'https://discord.js.org'
       )
       .setThumbnail(target.user.displayAvatarURL)
-      .addField('Dorm', student.dorm || '?', true)
-      .addField('Major', student.major || '?', true)
+      .addField('Dorm', student.dorm || '-', true)
+      .addField('Major', student.major || '-', true)
       .setFooter(
         `${'@' + target.user.tag} | Joined server ${joinedFromToday} days ago`
-      );
+      )
+  );
+};
 
+module.exports = {
+  name: 'who',
+  uses: {
+    'View your own Discord info': '',
+    'View a users Discord info': '@User'
+  },
+  async run(message, args) {
+    const { target, student } = await getTargetAndStudent(message);
+
+    const userEmbed = createStudentEmbed(target, student);
     message.channel.send(userEmbed);
 
     // Alert target if missing name
