@@ -15,5 +15,23 @@ module.exports = {
 
     if (created) console.log(`Created student record for @${target.user.tag}`);
     return { target, student };
+  },
+  async setStudentProperties(message, target, student, data) {
+    const props = Object.keys(data);
+    const values = Object.values(data);
+    console.log(
+      `Setting ${target.user.tag}'s ${props.join(', ')} to '${values.join(
+        ', '
+      )}'`
+    );
+
+    // I love this
+    Object.assign(student, data);
+
+    await student.save();
+
+    message.channel.send(
+      `Set your ${props.join(' ')} to \`${values.join(' ')}\`!`
+    );
   }
 };

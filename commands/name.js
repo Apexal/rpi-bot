@@ -1,15 +1,8 @@
-const { getTargetAndStudent } = require('../src/utils.js');
+const {
+  getTargetAndStudent,
+  setStudentProperties
+} = require('../src/utils.js');
 const config = require('../config.json');
-
-const setName = async (message, target, student, first_name, last_name) => {
-  console.log(
-    `Setting ${target.user.tag}'s name to '${first_name} ${last_name}'`
-  );
-  student.first_name = first_name;
-  student.last_name = last_name;
-  await student.save();
-  message.channel.send(`Set your name to \`${first_name} ${last_name}\`!`);
-};
 
 const getName = (message, target, student) => {
   if (!student.first_name || !student.last_name) {
@@ -56,7 +49,10 @@ module.exports = {
           }name First Last\``
         );
       } else {
-        return setName(message, target, student, args[0], args[1]);
+        return setStudentProperties(message, target, student, {
+          first_name: args[0],
+          last_name: args[1]
+        });
       }
     }
   }

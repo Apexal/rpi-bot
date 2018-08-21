@@ -1,12 +1,8 @@
-const { getTargetAndStudent } = require('../src/utils.js');
+const {
+  getTargetAndStudent,
+  setStudentProperties
+} = require('../src/utils.js');
 const config = require('../config.json');
-
-const setDorm = async (message, target, student, dorm) => {
-  console.log(`Setting ${target.user.tag}'s dorm to '${dorm}'`);
-  student.dorm = dorm;
-  await student.save();
-  return message.channel.send(`Set your dorm to \`${dorm}\`!`);
-};
 
 const getDorm = (message, target, student) => {
   if (!student.dorm) {
@@ -46,7 +42,8 @@ module.exports = {
       return getDorm(message, target, student);
     } else {
       // Set
-      return setDorm(message, target, student, args[0]);
+      const dorm = args.join(' ');
+      return setStudentProperties(message, target, student, { dorm });
     }
   }
 };
