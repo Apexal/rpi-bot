@@ -2,11 +2,12 @@
 
 > RPI - Registered Personnel Identifier
 
-A Discord bot using Discord.js for college servers to allow students to publicly share their name, graduation year, major, dorm, etc. (each optionally)
+A simple Discord bot for college servers to allow students to publicly share their name, graduation year, major, dorm, etc. (all optionally)
 
 ### Add to Server
 
 https://discordapp.com/api/oauth2/authorize?client_id=482050806934274048&scope=bot&permissions=67619904
+
 **Note:** Must be server owner or administrator to add.
 
 ### Commands
