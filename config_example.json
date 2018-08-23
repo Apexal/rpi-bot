@@ -4,7 +4,7 @@
   "token": "",
   "prefix": "!",
   "database": {
-    "host": ""
+    "path": ""
   },
   "ownerID": ""
 }

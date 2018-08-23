@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(config.database.name, null, null, {
   dialect: 'sqlite',
   logging: false,
-  storage: 'database.sqlite'
+  storage: config.database.path
 });
 
 /* Define the Student schema */
