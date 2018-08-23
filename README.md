@@ -4,11 +4,16 @@
 
 A simple Discord bot for college servers to allow students to publicly share their name, graduation year, major, dorm, etc. (all optionally)
 
-### Add to Server
+### Install
 
-https://discordapp.com/api/oauth2/authorize?client_id=482050806934274048&scope=bot&permissions=67619904
+In order to keep your data private, its strongly recommended to host the bot yourself. You must have **NodeJS** and **SQLite** installed.
 
-**Note:** Must be server owner or administrator to add.
+1. Clone this repository: `$ git clone git@github.com:Apexal/rpi-bot.git`
+2. Install dependencies `$ npm install`
+3. Create `config.json` based on `config_example.json`
+4. Run the bot `$ node index.js`
+
+If you don't want to/cannot and _you understand that I will be able to see all info saved_ you can add my hosted version to your server just by click [here](https://discordapp.com/api/oauth2/authorize?client_id=482050806934274048&scope=bot&permissions=67619904).
 
 ### Commands
 
