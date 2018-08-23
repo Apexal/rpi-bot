@@ -4,10 +4,6 @@
 
 A Discord bot using Discord.js for college servers to allow students to publicly share their name, graduation year, major, dorm, etc. (each optionally)
 
-### Examples
-
-![who command](assets/example.png)
-
 ### Commands
 
 _Default prefix is `!`_
@@ -18,6 +14,11 @@ _Default prefix is `!`_
 - `!dorm` - Get/sets a user's dorm.
 - `!major` - Get/sets a user's major
 - `!grad` - Get/sets a user's graduation year _coming soon_
+
+### Examples
+
+![setting info](assets/example2.png)
+![who command](assets/example.png)
 
 ### Contributing
 
