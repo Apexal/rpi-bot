@@ -1,0 +1,10 @@
+{
+  "clientID": "",
+  "permissions": 0,
+  "token": "",
+  "prefix": "!",
+  "database": {
+    "host": ""
+  },
+  "ownerID": ""
+}
