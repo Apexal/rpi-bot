@@ -7,9 +7,9 @@ const client = new Discord.Client();
 // Holds all event handlers
 client.events = new Discord.Collection();
 const eventFiles = fs
-  .readdirSync('./events')
-  .filter(file => file.endsWith('.js'))
-  .map(file => file.slice(0, -3)); // Remove '.js'
+  .readdirSync('./events') // Read *all* files in the events folder
+  .filter(file => file.endsWith('.js')) // Remove any non JavaScript files
+  .map(file => file.slice(0, -3)); // Remove the extension '.js' from each file name in the list
 
 for (const file of eventFiles) {
   const handler = require(`./events/${file}`);
@@ -21,9 +21,9 @@ console.log(`[Loaded ${eventFiles.length} event handlers]`);
 // Load all commands
 client.commands = new Discord.Collection();
 const commandFiles = fs
-  .readdirSync('./commands')
-  .filter(file => file.endsWith('.js'))
-  .map(file => file.slice(0, -3));
+  .readdirSync('./commands') // Read *all* files in commands folder
+  .filter(file => file.endsWith('.js')) // Remove any non JavaScript files
+  .map(file => file.slice(0, -3)); // Remove the extension '.js' from each file name in the list
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
@@ -34,9 +34,11 @@ console.log(`[Loaded ${commandFiles.length} commands]`);
 // Command handling
 client.on('message', async msg => {
   if (msg.content.startsWith(config.prefix)) {
-    const parts = msg.content.split(/ +/);
-    let [commandName, ...args] = parts;
-    commandName = commandName.substring(1);
+    const parts = msg.content.split(/ +/); // Split the message on whitespace, no matter its length
+    // This means '  ' and '      ' are treated equally
+
+    let [commandName, ...args] = parts; // commandName is set to first item in array, args is the array of the remaining parts which represent the command args
+    commandName = commandName.substring(1); // Remove the prefix from the commandName
 
     // Help command
     if (commandName === 'help') {
@@ -69,7 +71,9 @@ client.on('message', async msg => {
             '`'
         );
 
-        const lines = [`**Command Help:** \` ${config.prefix}${args[0]}\``];
+        const lines = [
+          '**Command Help:**' + ' `' + config.prefix + args[0] + '`'
+        ];
         msg.channel.send(lines.concat(uses), { split: true });
       }
     } else if (client.commands.has(commandName)) {

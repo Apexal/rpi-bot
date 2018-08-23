@@ -7,6 +7,7 @@ const sequelize = new Sequelize(config.database.name, null, null, {
   storage: 'database.sqlite'
 });
 
+/* Define the Student schema */
 const Student = sequelize.define('students', {
   discord_id: Sequelize.STRING,
   first_name: Sequelize.STRING,
@@ -26,7 +27,7 @@ sequelize.authenticate().then(
   }
 );
 
-// Creates databases
+// Creates databases if they don't exist
 sequelize.sync();
 
 module.exports = { sequelize, Student };

@@ -49,7 +49,7 @@ module.exports = {
     );
 
     // I love this
-    Object.assign(student, data);
+    Object.assign(student, data); // Update the Student object
 
     await student.save();
 

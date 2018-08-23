@@ -1,5 +1,6 @@
 const config = require('../config.json');
 
+// Run when bot starts up
 module.exports = client => {
   console.log(
     `Logged in as @${
