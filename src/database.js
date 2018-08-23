@@ -1,7 +1,7 @@
 const config = require('../config.json');
 
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(config.database.name, null, null, {
+const sequelize = new Sequelize({
   dialect: 'sqlite',
   logging: false,
   storage: config.database.path
