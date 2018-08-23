@@ -15,7 +15,11 @@ module.exports = client =>
     lines.push(
       `Use ${commandList} **on the server** to set your info for other students to see!`
     );
-    lines.push(`Use \`${config.prefix}who @User\` to see info on a student.`);
+    lines.push(
+      `Use \`${
+        config.prefix
+      }who @User\` **on the server** to see info on a student.`
+    );
 
     member.send(lines, { split: true });
   });
