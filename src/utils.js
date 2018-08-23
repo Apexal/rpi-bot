@@ -46,9 +46,11 @@ module.exports = {
   /* Sets the passed properties and values on a student, logs to console, and to the server once done. */
   async setStudentProperties(message, target, student, data) {
     const props = Object.keys(data);
+    const niceProps = props.map(p => p.split('_').join(' '));
     const values = Object.values(data);
+
     console.log(
-      `Setting ${target.user.tag}'s ${props.join(', ')} to '${values.join(
+      `Setting ${target.user.tag}'s ${niceProps.join(', ')} to '${values.join(
         ', '
       )}' on server ${target.guild.name}`
     );
@@ -59,7 +61,7 @@ module.exports = {
     await student.save();
 
     message.channel.send(
-      `Set your ${props.join(' ')} to \`${values.join(' ')}\`!`
+      `Set your *${niceProps.join(', ')}* to \`${values.join(' ')}\`!`
     );
   }
 };
