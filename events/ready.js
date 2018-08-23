@@ -10,4 +10,6 @@ module.exports = client =>
         config.clientID
       }&scope=bot&permissions=${config.permissions}`
     );
+
+    client.user.setActivity('Type !help', { type: 'PLAYING' });
   });
