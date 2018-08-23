@@ -12,10 +12,15 @@ module.exports = {
     }
 
     const [student, created] = await Student.findOrCreate({
-      where: { discord_id: target.user.id }
+      where: { discord_id: target.user.id, server_id: message.member.guild.id }
     });
 
-    if (created) console.log(`Created student record for @${target.user.tag}`);
+    if (created)
+      console.log(
+        `Created student record for @${target.user.tag} on server ${
+          target.guild.name
+        }`
+      );
     return { target, student };
   },
   getSimpleStudentProperty(message, target, student, prop) {
@@ -45,7 +50,7 @@ module.exports = {
     console.log(
       `Setting ${target.user.tag}'s ${props.join(', ')} to '${values.join(
         ', '
-      )}'`
+      )}' on server ${target.guild.name}`
     );
 
     // I love this

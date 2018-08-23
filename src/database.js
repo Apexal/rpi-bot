@@ -10,6 +10,7 @@ const sequelize = new Sequelize(config.database.name, null, null, {
 /* Define the Student schema */
 const Student = sequelize.define('students', {
   discord_id: Sequelize.STRING,
+  server_id: Sequelize.STRING,
   first_name: Sequelize.STRING,
   last_name: Sequelize.STRING,
   major: Sequelize.STRING,
