@@ -12,9 +12,8 @@ const eventFiles = fs
   .map(file => file.slice(0, -3)); // Remove the extension '.js' from each file name in the list
 
 for (const file of eventFiles) {
-  const handler = require(`./events/${file}`);
+  const handler = require(`./events/${file}`)(client);
   client.events.set(file, handler);
-  client.on(file, () => handler(client));
 }
 console.log(`[Loaded ${eventFiles.length} event handlers]`);
 
