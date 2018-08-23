@@ -43,14 +43,16 @@ client.on('message', async msg => {
     if (commandName === 'help') {
       if (args.length === 0) {
         const lines = ['**Commands:**'];
-        lines.push('!help');
+        lines.push(config.prefix + 'help');
         lines.push(
           client.commands
             .array()
             .map(cmd => `${config.prefix}${cmd.name}`)
             .join('\n')
         );
-        lines.push('*Use `!help <command>` to get more info.*');
+        lines.push(
+          '*Use `' + config.prefix + 'help <command>` to get more info.*'
+        );
 
         return msg.channel.send(lines, { split: true });
       } else {

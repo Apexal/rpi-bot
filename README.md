@@ -6,6 +6,8 @@ A Discord bot using Discord.js for college servers to allow students to publicly
 
 ### Commands
 
+_Default prefix is `!`_
+
 - `!help` - Shows a list of commands. Use `!help <command>` for a description and example uses.
 - `!who` - Shows a summary of a student with all given info.
 - `!name` - Get/sets a user's real name.

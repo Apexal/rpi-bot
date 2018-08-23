@@ -11,5 +11,5 @@ module.exports = client =>
       }&scope=bot&permissions=${config.permissions}`
     );
 
-    client.user.setActivity('Type !help', { type: 'PLAYING' });
+    client.user.setActivity(`Type ${config.prefix}help`, { type: 'PLAYING' });
   });
